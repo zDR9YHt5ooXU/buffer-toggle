@@ -15,10 +15,6 @@ import {
 } from 'rxjs';
 import { share } from 'rxjs/operators';
 
-of('World')
-  .pipe(map((name) => `Hello, ${name}!`))
-  .subscribe(console.log);
-
 // Open the console in the bottom right to see results.
 
 const loadingSubject = new BehaviorSubject<boolean>(true);
