@@ -13,7 +13,7 @@ import {
   mergeMap,
   tap,
 } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { mergeAll, share } from 'rxjs/operators';
 
 // Open the console in the bottom right to see results.
 
@@ -29,6 +29,7 @@ merge(
   obs.pipe(
     bufferToggle(stopObs, () => startObs),
     tap((v) => console.log('bufferToggle' + v))
+    // map((v) => of(...v))
   ),
   obs.pipe(
     windowToggle(startObs, () => stopObs),
@@ -39,11 +40,12 @@ merge(
   )
 )
   .pipe(
-    mergeMap((v) => {
-      console.log('mergeMap ');
-      console.log(v);
-      return v;
-    })
+    // mergeMap((v) => {
+    //   console.log('mergeMap ');
+    //   console.log(v);
+    //   return v;
+    // })
+    mergeAll()
   )
   .subscribe((v) => {
     console.log('final result', v);
