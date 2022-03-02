@@ -57,4 +57,11 @@ setTimeout(() => {
   loadingSubject.next(false);
   obs.next(3);
   obs.next(4);
+  loadingSubject.next(true);
+  obs.next(5);
+  obs.next(6);
+
+  setTimeout(() => {
+    loadingSubject.next(false);
+  }, 3000);
 });
